@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.topnav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-x: auto;
+  background: rgb(147, 140, 149);
+  white-space: nowrap;
+  border-radius: 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.topnav a {
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.topnav a:hover {
+  background-color: #87c245;
+  color: white;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  border-radius: 5px;
+
+}
+.topnav a:not(:first-child) {
+  margin-right: 10px;
+}
+
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 5px;
+  margin: 0 10px 10px 4px; /* Adjust margin for spacing between buttons */
+  background-color: #cfd9dc;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 10px;
+  
+  border-radius: 5px;
+  min-width: 90px;
+}
+
+
+.button img {
+  padding-right: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.button:hover {
+  background-color: #04AA6D;
+}
+
+.name1 {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.buttonbox{
+    overflow: auto;
+}
+.buttonbox1{
+  overflow: auto;}
+
+  .buttonbox2{
+    overflow: auto;
+}
+.buttonbox3{
+  overflow: auto;}
+
+  .category-buttons-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    background: #ffffff;
+  }
+
+  .category-buttons-container button {
+    padding: 10px 20px;
+    margin-right: 10px; /* Add some space between buttons */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    white-space: nowrap; /* Prevent line breaks */
+  }
+  .category-buttons-container button:hover {
+  background-color: #f0f0f0;
+}
+  .category-buttons-container button.active {
+    background-color: #b94ece;
+    color: #ffffff;
+    border: 2px solid #5b2ac5;
+    /* transition: border 0.1s ease-in-out; */
+
+
+  }
+
+  .category-buttons-container button {
+  margin-right: 15px;
+  /* transition: background-color 0.9s ease-in-out, color 0.9s ease-in-out; */
+
+}
+.container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#no-results-message {
+  text-align: center;
+  font-size: 18px;
+}
+#offline-message {
+      display: none;
+      text-align: center;
+      font-size: 20px;
+      padding: 20px;
+      background-color: #ff5555;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      transition: background-color 0.5s ease-in-out;
+    }
+     /* Add a green background when online */
+     #offline-message.online {
+      background-color: #04AA6D;
+    }
+
+    .shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-300%);
+  }
+  100% {
+    transform: translateX(500%);
+  }
+}
+  
+</style>
+</head>
+
+<!-- 
+<div class="topnav" id="myTopnav">
+  <a href="#" onclick="showAll()">Show All</a>
+
+    <a href="#" onclick="showContainer('container')">Search Engines</a>
+  <a href="#" onclick="showContainer('container1')">Reels</a>
+  <a href="#" onclick="showContainer('container3')">About</a> 
+  <a href="#class1">search engine</a>
+  <a href="#contact">Reels</a>
+  <a href="#about">About</a>
+  <a href="#text1">Text 1</a>
+  <a href="#text2">Text 2</a>
+  <a href="#text3">Text 3</a>
+  <a href="#text4">Text 4</a>
+  <a href="#text5">Text 5</a>
+  <a href="https://www.google.com">Google</a>
+  <a href="https://www.facebook.com">Facebook</a>
+  <a href="https://www.instagram.com">Instagram</a>
+</div> -->
+
+
+<div class="category-buttons-container">
+  <button class="filter-button active" onclick="filterVideos('all')" data-category="all">Shopping WebSites</button>
+ 
+</div> 
+
+
+<div class="container" data-category="Allinone">
+
+  <div class="name1">
+<p>All Shopping Sites</p></div>
+<div class="buttonbox1">
+  
+  <div class="button-container">
+    <a href="https://www.flipkart.com/">
+    <div class="button shimmer">
+      <img src="img/flipkart.png" alt="Image 1" height="30" width="30"> Flipkart
+    </div>
+  </a>
+  <a href="https://www.amazon.in/">
+    <div class="button shimmer">
+      <img src="img/amazon.jpg" alt="Image 1" height="30" width="30"> Amazon
+    </div>
+  </a>
+  <a href="https://www.myntra.com/">
+    <div class="button shimmer">
+      <img src="img/myntra.png" alt="Image 1" height="30" width="30">
+      Myntra
+    </div>
+  </a>
+  <a href="https://www.snapdeal.com/">
+    <div class="button shimmer">
+      <img src="img/snapdeal.jpg" alt="Image 1" height="30" width="30">
+      Snapdeal
+    </div>
+  </a>
+
+  <a href="https://www.shopclues.com/">
+    <div class="button shimmer">
+      <img src="img/shopclues,jpg.jpg" alt="Image 1" height="30" width="30">
+      Shopclues
+    </div>
+  </a>
+  <a href="https://www.tatacliq.com/">
+    <div class="button shimmer">
+      <img src="img/tatacliq.jpg" alt="Image 1" height="30" width="30">
+      Tatacliq
+    </div>
+  </a>
+  <a href="https://www.jabong.com/">
+    <div class="button shimmer">
+      <img src="img/jabong.jpg" alt="Image 1" height="30" width="30">
+      Jabong
+    </div>
+  </a>
+  <a href="https://www.firstcry.com/">
+    <div class="button shimmer">
+      <img src="img/firstcry.jpg" alt="Image 1" height="30" width="30">
+      Firstcry
+    </div>
+  </a>
+  <a href="https://www.ajio.com/">
+    <div class="button shimmer">
+      <img src="img/ajio.jpg" alt="Image 1" height="30" width="30">
+      Ajio
+    </div>
+  </a>
+  <a href="https://www.nike.com/in/">
+    <div class="button shimmer">
+      <img src="img/nike.png" alt="Image 1" height="30" width="30">
+      Nike
+    </div>
+  </a>
+
+<!--   
+  <a href="https://www.myntra.com/">
+    <div class="button shimmer">
+      <img src="tv9 kannada.png" alt="Image 1" height="30" width="30">
+      Myntra
+    </div>
+  </a>
+  <a href="https://www.shopclues.com/">
+    <div class="button shimmer">
+      <img src="tv9 kannada.png" alt="Image 1" height="30" width="30">
+      Shopclues
+    </div>
+  </a>
+  <a href="https://www.tatacliq.com/">
+    <div class="button shimmer">
+      <img src="tv9 kannada.png" alt="Image 1" height="30" width="30">
+     Tatacliq
+    </div>
+  </a>
+  <a href="https://www.amazon.com/">
+    <div class="button shimmer">
+      <img src="tv9 kannada.png" alt="Image 1" height="30" width="30">
+      Amazon
+    </div>
+  </a> -->
+  <a href="https://www.ebay.com/">
+    <div class="button shimmer">
+      <img src="img/ebay.jpg" alt="Image 1" height="30" width="30">
+      eBay
+    </div>
+  </a>
+  <a href="https://www.walmart.com/">
+    <div class="button shimmer">
+      <img src="img/walmart.png" alt="Image 1" height="30" width="30">
+      Walmart
+    </div>
+  </a>
+  <a href="https://www.target.com/">
+    <div class="button shimmer">
+      <img src="img/target.png" alt="Image 1" height="30" width="30">
+      Target
+    </div>
+  </a>
+  <a href="https://www.bestbuy.com/">
+    <div class="button shimmer">
+      <img src="img/bestbuy.jpg" alt="Image 1" height="30" width="30">
+      Best Buy
+    </div>
+  </a>
+ 
+  <a href="https://www.alibaba.com/">
+    <div class="button shimmer">
+      <img src="img/alibaba.png" alt="Image 1" height="30" width="30">
+      Alibaba
+    </div>
+  </a>
+  
+  <a href="https://www.etsy.com/">
+    <div class="button shimmer">
+      <img src="img/etsy.jpg" alt="Image 1" height="30" width="30">
+      Etsy
+    </div>
+  </a>
+  <a href="https://www.costco.com/">
+    <div class="button shimmer">
+      <img src="img/costco.jpg" alt="Image 1" height="30" width="30">
+      Costco
+    </div>
+  </a>
+  <a href="https://www.shopify.com/">
+    <div class="button shimmer">
+      <img src="img/shopify.jpg" alt="Image 1" height="30" width="30">
+      Shopify
+    </div>
+  </a>
+  <a href="https://www.newegg.com/">
+    <div class="button shimmer">
+      <img src="img/newegg.jpg" alt="Image 1" height="30" width="30">
+      Newegg
+    </div>
+  </a>
+  <a href="https://www.overstock.com/">
+    <div class="button shimmer">
+      <img src="img/overstock.png" alt="Image 1" height="30" width="30">
+      Overstock
+    </div>
+  </a>
+  <a href="https://www.zappos.com/">
+    <div class="button shimmer">
+      <img src="img/zappos.jpg" alt="Image 1" height="30" width="30">
+      Zappos
+    </div>
+  </a>
+  <a href="https://www.wayfair.com/">
+    <div class="button shimmer">
+      <img src="img/wayfair.jpg" alt="Image 1" height="30" width="30">
+      Wayfair
+    </div>
+  </a>
+  <a href="https://www.asos.com/">
+    <div class="button shimmer">
+      <img src="img/asos.png" alt="Image 1" height="30" width="30">
+      ASOS
+    </div>
+  </a>
+  <a href="https://www.macys.com/">
+    <div class="button shimmer">
+      <img src="img/macys.jpg" alt="Image 1" height="30" width="30">
+      Macy's
+    </div>
+  </a>
+ 
+  <a href="https://www.adidas.com/">
+    <div class="button shimmer">
+      <img src="img/adidas.png" alt="Image 1" height="30" width="30">
+      Adidas
+    </div>
+  </a>
+  <a href="https://www.apple.com/">
+    <div class="button shimmer">
+      <img src="img/apple.jpg" alt="Image 1" height="30" width="30">
+      Apple
+    </div>
+  </a>
+  <a href="https://www.samsung.com/">
+    <div class="button shimmer">
+      <img src="img/samsung.jpg" alt="Image 1" height="30" width="30">
+      Samsung
+    </div>
+  </a>
+  <a href="https://www.gap.com/">
+    <div class="button shimmer">
+      <img src="img/gap.png" alt="Image 1" height="30" width="30">
+      Gap
+    </div>
+  </a>
+  <a href="https://www.zara.com/">
+    <div class="button shimmer">
+      <img src="img/zara.png" alt="Image 1" height="30" width="30">
+      Zara
+    </div>
+  </a>
+  <a href="https://www.hm.com/">
+    <div class="button shimmer">
+      <img src="img/hm.png" alt="Image 1" height="30" width="30">
+      H&M
+    </div>
+  </a>
+  <a href="https://www.uniqlo.com/">
+    <div class="button shimmer">
+      <img src="img/uniqlo.png" alt="Image 1" height="30" width="30">
+      Uniqlo
+    </div>
+  </a>
+  <a href="https://www.ikea.com/">
+    <div class="button shimmer">
+      <img src="img/ikea.jpg" alt="Image 1" height="30" width="30">
+      IKEA
+    </div>
+  </a>
+  <a href="https://www.sephora.com/">
+    <div class="button shimmer">
+      <img src="img/sephora.jpg" alt="Image 1" height="30" width="30">
+      Sephora
+    </div>
+  </a>
+  <a href="https://www.underarmour.com/">
+    <div class="button shimmer">
+      <img src="img/underarmour.jpg" alt="Image 1" height="30" width="30">
+      Under Armour
+    </div>
+  </a>
+  <a href="https://www.victoriassecret.com/">
+    <div class="button shimmer">
+      <img src="img/victoriassecret.png" alt="Image 1" height="30" width="30">
+      Victoria's Secret
+    </div>
+  </a>
+  <a href="https://www.lululemon.com/">
+    <div class="button shimmer">
+      <img src="img/lululemon.jpg" alt="Image 1" height="30" width="30">
+      Lululemon
+    </div>
+  </a>
+  <a href="https://www.reebok.com/">
+    <div class="button shimmer">
+      <img src="img/reebok.jpg" alt="Image 1" height="30" width="30">
+      Reebok
+    </div>
+  </a>
+
+ 
+  <a href="https://www.aliexpress.com/">
+    <div class="button shimmer">
+      <img src="img/aliexpress.png" alt="Image 1" height="30" width="30">
+      AliExpress
+    </div>
+  </a>
+
+  <a href="https://www.homedepot.com/">
+    <div class="button shimmer">
+      <img src="img/homedepot.jpg" alt="Image 1" height="30" width="30">
+      Home Depot
+    </div>
+  </a>
+  <a href="https://www.lowes.com/">
+    <div class="button shimmer">
+      <img src="img/lowes.png" alt="Image 1" height="30" width="30">
+      Lowe's
+    </div>
+  </a>
+  <a href="https://www.bedbathandbeyond.com/">
+    <div class="button shimmer">
+      <img src="img/bedbathandbeyond.png" alt="Image 1" height="30" width="30">
+      Bed Bath & Beyond
+    </div>
+  </a>
+  <a href="https://www.kohls.com/">
+    <div class="button shimmer">
+      <img src="img/kohls.jpg" alt="Image 1" height="30" width="30">
+      Kohl's
+    </div>
+  </a>
+  <a href="https://www.acehardware.com/">
+    <div class="button shimmer">
+      <img src="img/acehardware.png" alt="Image 1" height="30" width="30">
+      Ace Hardware
+    </div>
+  </a>
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      function handleButtonClick(button) {
+    document.querySelectorAll('.filter-button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    const category = button.getAttribute('data-category');
+    filterVideos(category);
+  }
+
+  document.querySelectorAll('.filter-button').forEach(button => {
+    button.addEventListener('click', () => {
+      handleButtonClick(button);
+    });
+  });
+
+  function filterVideos(category) {
+    const videoItems = document.querySelectorAll('.container');
+    let noResultsMessage = document.getElementById('no-results-message');
+    let hasResults = false;
+
+    videoItems.forEach(item => {
+      const itemCategory = item.getAttribute('data-category');
+
+      if (category === 'all' || itemCategory === category) {
+        item.style.display = 'block';
+        hasResults = true;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    noResultsMessage.style.display = hasResults ? 'none' : 'block';
+  }
+
+  function showContainer(containerId, category) {
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+      container.style.display = 'none';
+    });
+
+    const container = document.querySelector(`.${containerId}`);
+    if (category) {
+      filterVideos(category);
+    } else {
+      container.style.display = 'block';
+    }
+  }
+
+  function showAll() {
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+      container.style.display = 'block';
+    });
+
+    filterVideos('all');
+  }
+     
+     
+     
+     
+     
+     </script> 
+    
+</body>
+</html>
